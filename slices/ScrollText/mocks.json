@@ -1,0 +1,25 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"eyebrow": {
+				"__TYPE__": "FieldContent",
+				"value": "solar",
+				"type": "Text"
+			},
+			"text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Magna reprehenderit cillum ullamco excepteur laborum in nisi sunt qui eu sunt. Consequat commodo do incididunt dolore est mollit cupidatat dolor adipisicing excepteur."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]
