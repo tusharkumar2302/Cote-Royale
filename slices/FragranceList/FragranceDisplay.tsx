@@ -1,5 +1,6 @@
 import { ButtonLink } from "@/app/components/ButtonLink";
 import { FadeIn } from "@/app/components/FadeIn";
+import { FragranceAttributes } from "@/app/components/FragranceAttributes";
 import { createClient } from "@/prismicio";
 import { Content } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
@@ -15,7 +16,11 @@ export const FragranceDisplay = async ({ id }: FragranceDisplayProps) => {
   const fragrance = await client.getByID<Content.FragranceDocument>(id);
 
   return (
-    <FadeIn className="relative z-10 grid min-h-[85vh] w-full translate-y-20 items-center justify-items-start border border-white/10 p-4 text-left md:p-14 lg:p-20">
+    <FadeIn
+      className="relative z-10 grid min-h-[85vh] w-full translate-y-20 items-center justify-items-start border border-white/10 p-4 text-left md:p-14 lg:p-20"
+      vars={{ duration: 2.5 }}
+      start="top 50%"
+    >
       <div className="absolute inset-0 z-0">
         <PrismicNextImage
           field={fragrance.data.feature_image}
@@ -27,16 +32,28 @@ export const FragranceDisplay = async ({ id }: FragranceDisplayProps) => {
         />
       </div>
 
-      <FadeIn className="relative z-10 grid translate-y-8">
+      <FadeIn
+        className="relative z-10 grid translate-y-8"
+        vars={{ duaration: 3, delay: 0.8 }}
+        start="top 50%"
+      >
         <h3 className="font-display mb-3 text-5xl md:text-6xl lg:text-7xl">
           <PrismicText field={fragrance.data.title} />
         </h3>
 
-        <p className="mb-8 text-base font-semibold text-gray-300">Eau de Parfum</p>
+        <p className="mb-8 text-base font-semibold text-gray-300">
+          Eau de Parfum
+        </p>
 
         <div className="mb-10 max-w-md text-lg text-gray-300">
           <PrismicRichText field={fragrance.data.description} />
         </div>
+
+        <FragranceAttributes
+          scentProfile={fragrance.data.scent_profile}
+          mood={fragrance.data.mood}
+          className="mb-10"
+        />
 
         <div className="flex flex-wrap gap-4">
           <ButtonLink document={fragrance} variant="Secondary">
@@ -44,7 +61,7 @@ export const FragranceDisplay = async ({ id }: FragranceDisplayProps) => {
           </ButtonLink>
 
           <ButtonLink href="#" variant="Primary">
-           <HiPlus className="mr-2"/>  <span>Add to bag</span>
+            <HiPlus className="mr-2" /> <span>Add to bag</span>
           </ButtonLink>
         </div>
       </FadeIn>
